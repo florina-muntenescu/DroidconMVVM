@@ -3,12 +3,14 @@ package upday.droidconmvvm;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
+import java.util.List;
+
 import rx.Observable;
 import upday.droidconmvvm.datamodel.DataModel;
 import upday.droidconmvvm.datamodel.IDataModel;
 
 /**
- * View model for the main activity
+ * View model for the main activity.
  */
 public class MainViewModel {
 
@@ -33,5 +35,15 @@ public class MainViewModel {
     @NonNull
     public Observable<String> getGreeting() {
         return mDataModel.getGreetingStream();
+    }
+
+    @NonNull
+    public Observable<List<String>> getSupportedLanguages() {
+        return mDataModel.getSupportedLanguages()
+                         .map(languages -> Observable.from(languages)
+                                                     .map(Language::getName)
+                                                     .toList()
+                                                     .toBlocking()
+                                                     .single());
     }
 }
