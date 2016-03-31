@@ -6,7 +6,12 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
+import rx.subscriptions.CompositeSubscription;
+
 public class MainActivity extends AppCompatActivity {
+
+    @NonNull
+    private final CompositeSubscription mSubscription = new CompositeSubscription();
 
     @NonNull
     private MainViewModel mViewModel = MainViewModel.getInstance();
@@ -27,8 +32,19 @@ public class MainActivity extends AppCompatActivity {
         bind();
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        unBind();
+    }
+
     private void bind() {
-        setGreeting(mViewModel.getGreeting());
+        mSubscription.add(mViewModel.getGreeting()
+                                    .subscribe(this::setGreeting));
+    }
+
+    private void unBind() {
+        mSubscription.unsubscribe();
     }
 
     private void setGreeting(@NonNull final String greeting) {
