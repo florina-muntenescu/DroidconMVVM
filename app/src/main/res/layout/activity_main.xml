@@ -10,7 +10,7 @@
     tools:context="upday.droidconmvvm.MainActivity">
 
     <TextView
+        android:id="@+id/greeting"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:layout_height="wrap_content" />
 </RelativeLayout>
