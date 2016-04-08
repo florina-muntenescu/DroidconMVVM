@@ -10,7 +10,10 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 import rx.subscriptions.CompositeSubscription;
+import upday.droidconmvvm.datamodel.IDataModel;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     private final CompositeSubscription mSubscription = new CompositeSubscription();
 
     @NonNull
-    private MainViewModel mViewModel = MainViewModel.getInstance();
+    private MainViewModel mViewModel;
 
     @Nullable
     private TextView mGreetingView;
@@ -30,6 +33,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mViewModel = new MainViewModel(getDataModel());
+
         mGreetingView = (TextView) findViewById(R.id.greeting);
         mLanguagesSpinner = (Spinner) findViewById(R.id.languages);
     }
@@ -48,9 +54,13 @@ public class MainActivity extends AppCompatActivity {
 
     private void bind() {
         mSubscription.add(mViewModel.getGreeting()
+                                    .subscribeOn(Schedulers.computation())
+                                    .observeOn(AndroidSchedulers.mainThread())
                                     .subscribe(this::setGreeting));
 
         mSubscription.add(mViewModel.getSupportedLanguages()
+                                    .subscribeOn(Schedulers.computation())
+                                    .observeOn(AndroidSchedulers.mainThread())
                                     .subscribe(this::setLanguages));
     }
 
@@ -59,15 +69,24 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setGreeting(@NonNull final String greeting) {
+        assert mGreetingView != null;
+
         mGreetingView.setText(greeting);
     }
 
     private void setLanguages(@NonNull final List<String> languages) {
+        assert mLanguagesSpinner != null;
+
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                                                           R.layout.language_item,
                                                           languages);
         adapter.setDropDownViewResource(R.layout.language_item);
         mLanguagesSpinner.setAdapter(adapter);
 
+    }
+
+    @NonNull
+    private IDataModel getDataModel() {
+        return ((DroidconApplication)getApplication()).getDataModel();
     }
 }

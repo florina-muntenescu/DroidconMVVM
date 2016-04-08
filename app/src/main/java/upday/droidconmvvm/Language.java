@@ -7,13 +7,17 @@ import android.support.annotation.NonNull;
  */
 public class Language {
 
+    public enum LanguageCode {
+        EN, DE, FR
+    }
+
     @NonNull
     private final String mName;
 
     @NonNull
-    private final String mCode;
+    private final LanguageCode mCode;
 
-    public Language(@NonNull final String name, @NonNull final String code) {
+    public Language(@NonNull final String name, @NonNull final LanguageCode code) {
         mName = name;
         mCode = code;
     }
@@ -24,7 +28,7 @@ public class Language {
     }
 
     @NonNull
-    public String getCode() {
+    public LanguageCode getCode() {
         return mCode;
     }
 }
