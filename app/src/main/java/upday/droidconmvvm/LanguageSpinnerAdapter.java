@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import upday.droidconmvvm.model.Language;
+
 public class LanguageSpinnerAdapter extends ArrayAdapter<Language> {
 
     public LanguageSpinnerAdapter(final Context context, final int resource,

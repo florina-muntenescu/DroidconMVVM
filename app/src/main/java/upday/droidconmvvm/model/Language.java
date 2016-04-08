@@ -1,4 +1,4 @@
-package upday.droidconmvvm;
+package upday.droidconmvvm.model;
 
 import android.support.annotation.NonNull;
 

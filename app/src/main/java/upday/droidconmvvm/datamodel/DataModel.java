@@ -6,9 +6,9 @@ import java.util.Arrays;
 import java.util.List;
 
 import rx.Observable;
-import upday.droidconmvvm.Language;
+import upday.droidconmvvm.model.Language;
 
-import static upday.droidconmvvm.Language.LanguageCode;
+import static upday.droidconmvvm.model.Language.LanguageCode;
 
 public class DataModel implements IDataModel {
 
