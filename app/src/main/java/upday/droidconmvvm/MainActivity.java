@@ -4,6 +4,9 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -17,7 +20,7 @@ import upday.droidconmvvm.datamodel.IDataModel;
 public class MainActivity extends AppCompatActivity {
 
     @NonNull
-    private final CompositeSubscription mSubscription = new CompositeSubscription();
+    private CompositeSubscription mSubscription;
 
     @NonNull
     private MainViewModel mViewModel;
@@ -27,6 +30,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Nullable
     private Spinner mLanguagesSpinner;
+
+    @Nullable
+    private LanguageSpinnerAdapter mLanguageSpinnerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +58,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void bind() {
+        mSubscription = new CompositeSubscription();
+
         mSubscription.add(mViewModel.getGreeting()
                                     .subscribeOn(Schedulers.computation())
                                     .observeOn(AndroidSchedulers.mainThread())
@@ -76,11 +84,24 @@ public class MainActivity extends AppCompatActivity {
     private void setLanguages(@NonNull final List<Language> languages) {
         assert mLanguagesSpinner != null;
 
-        LanguageSpinnerAdapter adapter = new LanguageSpinnerAdapter(this,
-                                                                    R.layout.language_item,
-                                                                    languages);
-//        adapter.setDropDownViewResource(R.layout.language_item);
-        mLanguagesSpinner.setAdapter(adapter);
+        mLanguageSpinnerAdapter = new LanguageSpinnerAdapter(this,
+                                                             R.layout.language_item,
+                                                             languages);
+        mLanguagesSpinner.setAdapter(mLanguageSpinnerAdapter);
+        mLanguagesSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(final AdapterView<?> parent, final View view,
+                                       final int position, final long id) {
+                Log.d("flo", "item selected " + position);
+                Language languageSelected = mLanguageSpinnerAdapter.getItem(position);
+                mViewModel.languageSelected(languageSelected);
+            }
+
+            @Override
+            public void onNothingSelected(final AdapterView<?> parent) {
+                //nothing to do here
+            }
+        });
 
     }
 
