@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -74,19 +73,19 @@ public class MainActivity extends AppCompatActivity {
         mGreetingView.setText(greeting);
     }
 
-    private void setLanguages(@NonNull final List<String> languages) {
+    private void setLanguages(@NonNull final List<Language> languages) {
         assert mLanguagesSpinner != null;
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
-                                                          R.layout.language_item,
-                                                          languages);
-        adapter.setDropDownViewResource(R.layout.language_item);
+        LanguageSpinnerAdapter adapter = new LanguageSpinnerAdapter(this,
+                                                                    R.layout.language_item,
+                                                                    languages);
+//        adapter.setDropDownViewResource(R.layout.language_item);
         mLanguagesSpinner.setAdapter(adapter);
 
     }
 
     @NonNull
     private IDataModel getDataModel() {
-        return ((DroidconApplication)getApplication()).getDataModel();
+        return ((DroidconApplication) getApplication()).getDataModel();
     }
 }

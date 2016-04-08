@@ -25,12 +25,8 @@ public class MainViewModel {
     }
 
     @NonNull
-    public Observable<List<String>> getSupportedLanguages() {
-        return mDataModel.getSupportedLanguages()
-                         .flatMap(languages -> Observable.from(languages)
-                                                         .map(Language::getName)
-                                                         .toList());
+    public Observable<List<Language>> getSupportedLanguages() {
+        return mDataModel.getSupportedLanguages();
     }
-
 
 }
