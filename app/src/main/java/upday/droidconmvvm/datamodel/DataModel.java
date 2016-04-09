@@ -12,11 +12,6 @@ import static upday.droidconmvvm.model.Language.LanguageCode;
 
 public class DataModel implements IDataModel {
 
-    @Override
-    public Observable<String> getGreetingStream() {
-        return Observable.just("Hello there");
-    }
-
     @NonNull
     @Override
     public Observable<List<Language>> getSupportedLanguages() {
