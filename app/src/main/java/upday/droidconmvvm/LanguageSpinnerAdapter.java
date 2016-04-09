@@ -1,6 +1,7 @@
 package upday.droidconmvvm;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,16 +48,17 @@ public class LanguageSpinnerAdapter extends ArrayAdapter<Language> {
         }
 
         Language language = getItem(position);
-        holder.mText.setText(language.getName());
+        holder.bind(language.getName());
 
         return view;
     }
 
     private class ViewHolder {
 
-        TextView mText;
+        private TextView mText;
 
-        public ViewHolder() {
+        public void bind(@NonNull final String text) {
+            mText.setText(text);
         }
     }
 }
