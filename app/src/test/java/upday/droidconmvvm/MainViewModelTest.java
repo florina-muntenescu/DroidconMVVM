@@ -36,8 +36,8 @@ public class MainViewModelTest {
         Language en = new Language("English", LanguageCode.EN);
         List<Language> languages = Arrays.asList(de, en);
         Mockito.when(mDataModel.getSupportedLanguages()).thenReturn(Observable.just(languages));
-
         TestSubscriber<List<Language>> testSubscriber = new TestSubscriber<>();
+
         mMainViewModel.getSupportedLanguages().subscribe(testSubscriber);
 
         testSubscriber.assertNoErrors();
@@ -50,7 +50,7 @@ public class MainViewModelTest {
         mMainViewModel.getGreeting().subscribe(testSubscriber);
 
         testSubscriber.assertNoErrors();
-        testSubscriber.assertValueCount(0);
+        testSubscriber.assertNoValues();
     }
 
     @Test

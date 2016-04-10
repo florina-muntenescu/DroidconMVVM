@@ -17,7 +17,8 @@ public class DataModel implements IDataModel {
     public Observable<List<Language>> getSupportedLanguages() {
         List<Language> languages = Arrays
                 .asList(new Language("English", LanguageCode.EN),
-                        new Language("German", LanguageCode.DE));
+                        new Language("German", LanguageCode.DE),
+                        new Language("English", LanguageCode.HR));
         return Observable.just(languages);
     }
 
@@ -29,8 +30,8 @@ public class DataModel implements IDataModel {
                 return Observable.just("Guten Tag!");
             case EN:
                 return Observable.just("Hello!");
-            case FR:
-                return Observable.just("Bonjour!");
+            case HR:
+                return Observable.just("Zdravo!");
             default:
                 return Observable.never();
         }

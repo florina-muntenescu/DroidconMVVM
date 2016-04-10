@@ -9,15 +9,9 @@ import upday.droidconmvvm.datamodel.IDataModel;
 public class DroidconApplication extends Application {
 
     @NonNull
-    private IDataModel mDataModel;
+    private final IDataModel mDataModel;
 
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        initInstance();
-    }
-
-    private void initInstance() {
+    public DroidconApplication() {
         mDataModel = new DataModel();
     }
 

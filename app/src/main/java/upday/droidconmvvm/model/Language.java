@@ -8,7 +8,7 @@ import android.support.annotation.NonNull;
 public class Language {
 
     public enum LanguageCode {
-        EN, DE, FR
+        EN, DE, HR
     }
 
     @NonNull
