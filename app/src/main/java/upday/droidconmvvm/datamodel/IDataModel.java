@@ -15,5 +15,5 @@ public interface IDataModel {
     Observable<List<Language>> getSupportedLanguages();
 
     @NonNull
-    Observable<String> getGreetingByLanguageCode(LanguageCode code);
+    Observable<String> getGreetingByLanguageCode(@NonNull final LanguageCode code);
 }

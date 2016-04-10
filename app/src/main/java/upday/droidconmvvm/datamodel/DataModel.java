@@ -24,7 +24,7 @@ public class DataModel implements IDataModel {
 
     @NonNull
     @Override
-    public Observable<String> getGreetingByLanguageCode(final LanguageCode code) {
+    public Observable<String> getGreetingByLanguageCode(@NonNull final LanguageCode code) {
         switch (code) {
             case DE:
                 return Observable.just("Guten Tag!");
@@ -33,7 +33,7 @@ public class DataModel implements IDataModel {
             case HR:
                 return Observable.just("Zdravo!");
             default:
-                return Observable.never();
+                return Observable.empty();
         }
     }
 }
