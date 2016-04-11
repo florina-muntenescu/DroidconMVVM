@@ -12,8 +12,6 @@ import static upday.droidconmvvm.model.Language.LanguageCode;
 public interface IDataModel {
 
     @NonNull
-    Observable<List<Language>> getSupportedLanguages();
+    Observable<String> getGreeting();
 
-    @NonNull
-    Observable<String> getGreetingByLanguageCode(@NonNull final LanguageCode code);
 }

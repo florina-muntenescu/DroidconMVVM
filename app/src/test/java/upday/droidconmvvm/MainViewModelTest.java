@@ -6,15 +6,9 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
-import java.util.Arrays;
-import java.util.List;
-
 import rx.Observable;
 import rx.observers.TestSubscriber;
 import upday.droidconmvvm.datamodel.IDataModel;
-import upday.droidconmvvm.model.Language;
-
-import static upday.droidconmvvm.model.Language.LanguageCode;
 
 public class MainViewModelTest {
 
@@ -31,41 +25,16 @@ public class MainViewModelTest {
     }
 
     @Test
-    public void testGetSupportedLanguages_emitsCorrectLanguages() {
-        Language de = new Language("German", LanguageCode.DE);
-        Language en = new Language("English", LanguageCode.EN);
-        List<Language> languages = Arrays.asList(de, en);
-        Mockito.when(mDataModel.getSupportedLanguages()).thenReturn(Observable.just(languages));
-        TestSubscriber<List<Language>> testSubscriber = new TestSubscriber<>();
-
-        mMainViewModel.getSupportedLanguages().subscribe(testSubscriber);
-
-        testSubscriber.assertNoErrors();
-        testSubscriber.assertValue(languages);
-    }
-
-    @Test
-    public void testGetGreeting_doesNotEmit_whenNoLanguageSet() {
+    public void testGetGreeting_emitsCorrectGreeting() {
+        String greeting = "Hello!";
+        Mockito.when(mDataModel.getGreeting()).thenReturn(Observable.just(greeting));
         TestSubscriber<String> testSubscriber = new TestSubscriber<>();
+
         mMainViewModel.getGreeting().subscribe(testSubscriber);
 
         testSubscriber.assertNoErrors();
-        testSubscriber.assertNoValues();
+        testSubscriber.assertValue(greeting);
     }
 
-    @Test
-    public void testGetGreeting_emitsCorrectGreeting_whenLanguageSet() {
-        String enGreeting = "Hello";
-        Language en = new Language("English", LanguageCode.EN);
-        Mockito.when(mDataModel.getGreetingByLanguageCode(LanguageCode.EN))
-               .thenReturn(Observable.just(enGreeting));
-        TestSubscriber<String> testSubscriber = new TestSubscriber<>();
-        mMainViewModel.getGreeting().subscribe(testSubscriber);
-
-        mMainViewModel.languageSelected(en);
-
-        testSubscriber.assertNoErrors();
-        testSubscriber.assertValue(enGreeting);
-    }
 }
 
