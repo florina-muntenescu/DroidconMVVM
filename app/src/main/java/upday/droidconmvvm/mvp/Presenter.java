@@ -2,6 +2,8 @@ package upday.droidconmvvm.mvp;
 
 import android.support.annotation.NonNull;
 
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 import rx.subscriptions.CompositeSubscription;
 import upday.droidconmvvm.datamodel.IDataModel;
 
@@ -29,6 +31,8 @@ public class Presenter implements IPresenter {
         mSubscription = new CompositeSubscription();
 
         mSubscription.add(mDataModel.getGreeting()
+                                    .subscribeOn(Schedulers.computation())
+                                    .observeOn(AndroidSchedulers.mainThread())
                                     .subscribe(this::setGreeting));
     }
 
