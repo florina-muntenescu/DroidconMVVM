@@ -1,4 +1,4 @@
-package upday.droidconmvvm;
+package upday.droidconmvvm.mvvm;
 
 import android.support.annotation.NonNull;
 
@@ -8,12 +8,12 @@ import upday.droidconmvvm.datamodel.IDataModel;
 /**
  * View model for the main activity.
  */
-public class MainViewModel {
+public class ViewModel {
 
     @NonNull
     private final IDataModel mDataModel;
 
-    public MainViewModel(@NonNull final IDataModel dataModel) {
+    public ViewModel(@NonNull final IDataModel dataModel) {
         mDataModel = dataModel;
     }
 

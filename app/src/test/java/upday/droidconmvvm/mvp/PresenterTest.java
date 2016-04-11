@@ -1,4 +1,4 @@
-package upday.droidconmvvm;
+package upday.droidconmvvm.mvp;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -7,34 +7,32 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import rx.Observable;
-import rx.observers.TestSubscriber;
 import upday.droidconmvvm.datamodel.IDataModel;
 
-public class MainViewModelTest {
+public class PresenterTest {
 
     @Mock
     private IDataModel mDataModel;
 
-    private MainViewModel mMainViewModel;
+    @Mock
+    private IView mView;
+
+    private Presenter mPresenter;
 
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
 
-        mMainViewModel = new MainViewModel(mDataModel);
+        mPresenter = new Presenter(mDataModel, mView);
     }
 
     @Test
-    public void testGetGreeting_emitsCorrectGreeting() {
+    public void testGetGreeting_set_whenViewBinded() {
         String greeting = "Hello!";
         Mockito.when(mDataModel.getGreeting()).thenReturn(Observable.just(greeting));
-        TestSubscriber<String> testSubscriber = new TestSubscriber<>();
 
-        mMainViewModel.getGreeting().subscribe(testSubscriber);
+        mPresenter.bind();
 
-        testSubscriber.assertNoErrors();
-        testSubscriber.assertValue(greeting);
+        Mockito.verify(mView).setGreeting(greeting);
     }
-
 }
-

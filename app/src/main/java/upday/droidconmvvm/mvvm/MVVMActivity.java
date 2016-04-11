@@ -1,4 +1,4 @@
-package upday.droidconmvvm;
+package upday.droidconmvvm.mvvm;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -9,15 +9,17 @@ import android.widget.TextView;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 import rx.subscriptions.CompositeSubscription;
+import upday.droidconmvvm.DroidconApplication;
+import upday.droidconmvvm.R;
 import upday.droidconmvvm.datamodel.IDataModel;
 
-public class MainActivity extends AppCompatActivity {
+public class MVVMActivity extends AppCompatActivity {
 
     @NonNull
     private CompositeSubscription mSubscription;
 
     @NonNull
-    private MainViewModel mViewModel;
+    private ViewModel mViewModel;
 
     @Nullable
     private TextView mGreetingView;
@@ -27,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mViewModel = new MainViewModel(getDataModel());
+        mViewModel = new ViewModel(getDataModel());
         setupViews();
     }
 
