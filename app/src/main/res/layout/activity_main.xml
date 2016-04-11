@@ -7,7 +7,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".mvvm.MVVMActivity">
+    tools:context=".mvvm.MVVMActivity"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/greeting"
@@ -15,4 +16,11 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/activity_vertical_margin"
         android:textSize="@dimen/text_size" />
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:src="@drawable/zagreb" />
+
 </LinearLayout>

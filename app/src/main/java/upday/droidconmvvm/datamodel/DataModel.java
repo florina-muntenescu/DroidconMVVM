@@ -9,6 +9,6 @@ public class DataModel implements IDataModel {
     @NonNull
     @Override
     public Observable<String> getGreeting() {
-        return Observable.just("Hello, MVVM World!");
+        return Observable.just("Hello, Zagreb!");
     }
 }
