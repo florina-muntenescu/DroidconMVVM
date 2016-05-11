@@ -18,7 +18,7 @@ public class DataModel implements IDataModel {
         List<Language> languages = Arrays
                 .asList(new Language("English", LanguageCode.EN),
                         new Language("German", LanguageCode.DE),
-                        new Language("English", LanguageCode.HR));
+                        new Language("Slovakian", LanguageCode.HR));
         return Observable.just(languages);
     }
 
