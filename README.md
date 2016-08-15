@@ -12,6 +12,6 @@ The `View` is an Activity that contains a Spinner with the supported languages a
 
 ![Model-View-ViewModel](https://github.com/florina-muntenescu/DroidconMVVM/blob/readme/screenshots/mvvm.png?raw=true)
 
-[droidcon]: <http://droidcon.hr/en/sessions/mvvm-rxjava-the-perfect-mix/>
-[observables]: <http://reactivex.io/documentation/observable.html/>
+[droidcon]: <http://droidcon.hr/en/sessions/mvvm-rxjava-perfect-mix/>
+[observables]: <http://reactivex.io/documentation/observable.html>
 
