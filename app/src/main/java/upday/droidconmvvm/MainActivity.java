@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mViewModel = new MainViewModel(getDataModel());
+        mViewModel = getViewModel();
         setupViews();
     }
 
@@ -108,8 +108,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @NonNull
-    private IDataModel getDataModel() {
-        return ((DroidconApplication) getApplication()).getDataModel();
+    private MainViewModel getViewModel() {
+        return ((DroidconApplication) getApplication()).getViewModel();
     }
 
     private void itemSelected(final int position) {
