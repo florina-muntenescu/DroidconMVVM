@@ -19,4 +19,9 @@ public class DroidconApplication extends Application {
     public IDataModel getDataModel() {
         return mDataModel;
     }
+
+    @NonNull
+    public MainViewModel getViewModel(){
+        return new MainViewModel(getDataModel());
+    }
 }
