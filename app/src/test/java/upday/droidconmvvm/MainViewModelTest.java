@@ -13,6 +13,7 @@ import rx.Observable;
 import rx.observers.TestSubscriber;
 import upday.droidconmvvm.datamodel.IDataModel;
 import upday.droidconmvvm.model.Language;
+import upday.droidconmvvm.schedulers.ImmediateSchedulerProvider;
 
 import static upday.droidconmvvm.model.Language.LanguageCode;
 
@@ -27,7 +28,7 @@ public class MainViewModelTest {
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
 
-        mMainViewModel = new MainViewModel(mDataModel);
+        mMainViewModel = new MainViewModel(mDataModel, new ImmediateSchedulerProvider());
     }
 
     @Test

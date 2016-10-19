@@ -8,6 +8,7 @@ import rx.Observable;
 import rx.subjects.BehaviorSubject;
 import upday.droidconmvvm.datamodel.IDataModel;
 import upday.droidconmvvm.model.Language;
+import upday.droidconmvvm.schedulers.ISchedulerProvider;
 
 /**
  * View model for the main activity.
@@ -20,13 +21,19 @@ public class MainViewModel {
     @NonNull
     private final BehaviorSubject<Language> mSelectedLanguage = BehaviorSubject.create();
 
-    public MainViewModel(@NonNull final IDataModel dataModel) {
+    @NonNull
+    private final ISchedulerProvider mSchedulerProvider;
+
+    public MainViewModel(@NonNull final IDataModel dataModel,
+                         @NonNull final ISchedulerProvider schedulerProvider) {
         mDataModel = dataModel;
+        mSchedulerProvider = schedulerProvider;
     }
 
     @NonNull
     public Observable<String> getGreeting() {
         return mSelectedLanguage
+                .observeOn(mSchedulerProvider.computation())
                 .map(Language::getCode)
                 .flatMap(mDataModel::getGreetingByLanguageCode);
     }

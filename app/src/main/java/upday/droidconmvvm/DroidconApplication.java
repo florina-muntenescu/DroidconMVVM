@@ -5,6 +5,8 @@ import android.support.annotation.NonNull;
 
 import upday.droidconmvvm.datamodel.DataModel;
 import upday.droidconmvvm.datamodel.IDataModel;
+import upday.droidconmvvm.schedulers.ISchedulerProvider;
+import upday.droidconmvvm.schedulers.SchedulerProvider;
 
 public class DroidconApplication extends Application {
 
@@ -21,7 +23,13 @@ public class DroidconApplication extends Application {
     }
 
     @NonNull
-    public MainViewModel getViewModel(){
-        return new MainViewModel(getDataModel());
+    public ISchedulerProvider getSchedulerProvider() {
+        return SchedulerProvider.getInstance();
     }
+
+    @NonNull
+    public MainViewModel getViewModel() {
+        return new MainViewModel(getDataModel(), getSchedulerProvider());
+    }
+
 }
