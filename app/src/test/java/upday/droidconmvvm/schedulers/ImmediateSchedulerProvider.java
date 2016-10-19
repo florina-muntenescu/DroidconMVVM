@@ -18,12 +18,6 @@ public class ImmediateSchedulerProvider implements ISchedulerProvider {
 
     @NonNull
     @Override
-    public Scheduler io() {
-        return Schedulers.immediate();
-    }
-
-    @NonNull
-    @Override
     public Scheduler ui() {
         return Schedulers.immediate();
     }

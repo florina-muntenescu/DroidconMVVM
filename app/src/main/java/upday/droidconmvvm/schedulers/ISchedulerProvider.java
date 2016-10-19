@@ -13,8 +13,5 @@ public interface ISchedulerProvider {
     Scheduler computation();
 
     @NonNull
-    Scheduler io();
-
-    @NonNull
     Scheduler ui();
 }

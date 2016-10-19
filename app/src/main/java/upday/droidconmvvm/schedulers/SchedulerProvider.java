@@ -34,12 +34,6 @@ public class SchedulerProvider implements ISchedulerProvider {
 
     @Override
     @NonNull
-    public Scheduler io() {
-        return Schedulers.io();
-    }
-
-    @Override
-    @NonNull
     public Scheduler ui() {
         return AndroidSchedulers.mainThread();
     }
