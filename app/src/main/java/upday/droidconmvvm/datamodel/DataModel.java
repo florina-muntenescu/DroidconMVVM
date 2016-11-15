@@ -15,11 +15,15 @@ public class DataModel implements IDataModel {
     @NonNull
     @Override
     public Observable<List<Language>> getSupportedLanguages() {
-        List<Language> languages = Arrays
+        return Observable.fromCallable(this::getLanguages);
+    }
+
+    @NonNull
+    private List<Language> getLanguages() {
+        return Arrays
                 .asList(new Language("English", LanguageCode.EN),
                         new Language("German", LanguageCode.DE),
                         new Language("Slovakian", LanguageCode.HR));
-        return Observable.just(languages);
     }
 
     @NonNull
