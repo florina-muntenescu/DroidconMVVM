@@ -2,7 +2,9 @@ package upday.droidconmvvm.schedulers;
 
 import android.support.annotation.NonNull;
 
-import rx.Scheduler;
+import io.reactivex.Scheduler;
+
+//import rx.Scheduler;
 
 /**
  * Allow providing different types of {@link Scheduler}s.

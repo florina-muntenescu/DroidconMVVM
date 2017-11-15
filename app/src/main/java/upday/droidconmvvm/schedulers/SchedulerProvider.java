@@ -3,9 +3,13 @@ package upday.droidconmvvm.schedulers;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import rx.Scheduler;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
+import io.reactivex.Scheduler;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
+
+//import rx.Scheduler;
+//import rx.android.schedulers.AndroidSchedulers;
+//import rx.schedulers.Schedulers;
 
 /**
  * Provides different types of schedulers.

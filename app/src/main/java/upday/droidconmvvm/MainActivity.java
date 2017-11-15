@@ -11,16 +11,14 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
-import rx.subscriptions.CompositeSubscription;
-import upday.droidconmvvm.datamodel.IDataModel;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
+import io.reactivex.disposables.CompositeDisposable;
 import upday.droidconmvvm.model.Language;
 
 public class MainActivity extends AppCompatActivity {
 
-    @NonNull
-    private CompositeSubscription mSubscription;
+    @NonNull CompositeDisposable compositeDisposable;
 
     @NonNull
     private MainViewModel mViewModel;
@@ -75,21 +73,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void bind() {
-        mSubscription = new CompositeSubscription();
+        compositeDisposable = new CompositeDisposable();
 
-        mSubscription.add(mViewModel.getGreeting()
+        compositeDisposable.add(mViewModel.getGreeting()
                                     .subscribeOn(Schedulers.computation())
                                     .observeOn(AndroidSchedulers.mainThread())
                                     .subscribe(this::setGreeting));
 
-        mSubscription.add(mViewModel.getSupportedLanguages()
+        compositeDisposable.add(mViewModel.getSupportedLanguages()
                                     .subscribeOn(Schedulers.computation())
                                     .observeOn(AndroidSchedulers.mainThread())
                                     .subscribe(this::setLanguages));
     }
 
     private void unBind() {
-        mSubscription.unsubscribe();
+        compositeDisposable.clear();
     }
 
     private void setGreeting(@NonNull final String greeting) {
