@@ -18,7 +18,8 @@ import upday.droidconmvvm.model.Language;
 
 public class MainActivity extends AppCompatActivity {
 
-    @NonNull CompositeDisposable compositeDisposable;
+    @NonNull
+    private CompositeDisposable mCompositeDisposable;
 
     @NonNull
     private MainViewModel mViewModel;
@@ -73,21 +74,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void bind() {
-        compositeDisposable = new CompositeDisposable();
+        mCompositeDisposable = new CompositeDisposable();
 
-        compositeDisposable.add(mViewModel.getGreeting()
+        mCompositeDisposable.add(mViewModel.getGreeting()
                                     .subscribeOn(Schedulers.computation())
                                     .observeOn(AndroidSchedulers.mainThread())
                                     .subscribe(this::setGreeting));
 
-        compositeDisposable.add(mViewModel.getSupportedLanguages()
+        mCompositeDisposable.add(mViewModel.getSupportedLanguages()
                                     .subscribeOn(Schedulers.computation())
                                     .observeOn(AndroidSchedulers.mainThread())
                                     .subscribe(this::setLanguages));
     }
 
     private void unBind() {
-        compositeDisposable.clear();
+        mCompositeDisposable.clear();
     }
 
     private void setGreeting(@NonNull final String greeting) {

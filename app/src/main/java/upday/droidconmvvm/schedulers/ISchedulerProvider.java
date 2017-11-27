@@ -4,8 +4,6 @@ import android.support.annotation.NonNull;
 
 import io.reactivex.Scheduler;
 
-//import rx.Scheduler;
-
 /**
  * Allow providing different types of {@link Scheduler}s.
  */
