@@ -31,9 +31,11 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.4.0'
-    // RxJava
-    compile 'io.reactivex:rxjava:1.1.5'
-    compile 'io.reactivex:rxandroid:1.2.0'
+    //RxAndroid
+    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    // Because RxAndroid releases are few and far between, it is recommended you also
+    // explicitly depend on RxJava's latest version for bug fixes and new features.
+    compile 'io.reactivex.rxjava2:rxjava:2.1.6'
     // Mockito
     testCompile 'org.mockito:mockito-core:1.10.19'
 

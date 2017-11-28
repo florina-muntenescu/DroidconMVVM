@@ -4,8 +4,8 @@ import android.support.annotation.NonNull;
 
 import java.util.List;
 
-import rx.Observable;
-import rx.subjects.BehaviorSubject;
+import io.reactivex.Observable;
+import io.reactivex.subjects.BehaviorSubject;
 import upday.droidconmvvm.datamodel.IDataModel;
 import upday.droidconmvvm.model.Language;
 import upday.droidconmvvm.schedulers.ISchedulerProvider;
